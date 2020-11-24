@@ -28,13 +28,26 @@
         const password = document.querySelector('#input2')
         const connecter = document.querySelector('#btn1')
         const annuler = document.querySelector('#btn2')
-        connecter.addEventListener('click',({target: { value }}) =>{
-            if( !value.includes ('@') ) {
-             alert("email incorrect")  
-             email.style.borderColor='red'   
-            }
-        else
-              alert("connexion valider")
+        email.addEventListener('input', ({ target: { value } } ) => {
+    if (value.length === 0)
+    email.style.borderColor = 'black'
+    else if( !value.includes('@'))
+    email.style.borderColor = 'red'
+    else
+    email.style.borderColor = 'green'
+})
+password.addEventListener('input', ({ target: { value } } ) => {
+    if (value.length < 8)
+    password.style.borderColor = 'red'
+    else
+    password.style.borderColor = 'green'
+})
+
+connecter.addEventListener('click',() =>{
+            if( email.style.borderColor === 'red' || password.style.borderColor === 'red') 
+             alert("email ou password incorrect")  
+              else 
+              alert("Connexion Reussie")
          })
         annuler.addEventListener('click', () =>{
             alert("Connexion annulée avec succès")
